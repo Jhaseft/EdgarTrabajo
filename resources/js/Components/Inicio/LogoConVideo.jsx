@@ -14,7 +14,7 @@ export default function LogoConVideo({
         <>
             {/* IZQUIERDA */}
             <AnimatedSection 
-                animationType="up" 
+                animationType="right" 
                 className="w-full md:w-1/2 flex flex-col items-center text-center space-y-4 md:space-y-6 max-w-[600px] md:max-w-none flex-shrink-0 md:justify-center md:h-full overflow-auto"
             >
                 {/* Logo */}

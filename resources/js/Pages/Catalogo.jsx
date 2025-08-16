@@ -1,8 +1,7 @@
 import MainLayout from "@/Layouts/MainLayoutCatalogo";
 
 export default function Catalogo({ categorias = [], sales = [], yahuas_chimichurris = [], carbones = [] }) {
-    console.log("Cantidad de categorías recibidas:", categorias.length);
-
+    
     // Asignar productos extras a la categoría existente "Extras"
     const todasCategorias = categorias.map(categoria => {
         if (categoria.nombre.toLowerCase() === "extras") {
@@ -18,10 +17,7 @@ export default function Catalogo({ categorias = [], sales = [], yahuas_chimichur
         return categoria;
     });
 
-    // Mostrar info en consola
-    todasCategorias.forEach((categoria, index) => {
-        console.log(`Categoría ${index + 1} (${categoria.nombre}) tiene ${categoria.productos?.length || 0} productos`);
-    });
+    
 
     return (
         <MainLayout categorias={todasCategorias}>

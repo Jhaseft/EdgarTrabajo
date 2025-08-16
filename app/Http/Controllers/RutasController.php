@@ -13,7 +13,7 @@ class RutasController extends Controller
     public function index()
     {
         // Página principal
-        return Inertia::render('Welcome');
+        return Inertia::render('Welcome'); 
     }
     
    public function Catalogo()

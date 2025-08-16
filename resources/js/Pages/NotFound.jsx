@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/notfound.css"; // Asumiendo que ahí está tu CSS con las clases
+import "../../css/notfound.css"; 
 
 export default function NotFound() {
   return (
@@ -12,7 +12,7 @@ export default function NotFound() {
                 <h1 className="text-center">404</h1>
               </div>
               <div className="contant_box_404">
-                <h3 className="h2">Pronto habra redes estamos trabajando en ello</h3>
+                <h3 className="h2">Estoy trabajando en mi proyecto</h3>
                 <p>Porfavor vuelve y Sigue con tu experiencia</p>
                 <a href="/" className="link_404">Volver a Casa</a>
               </div>

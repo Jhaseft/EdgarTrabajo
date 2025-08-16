@@ -31,7 +31,7 @@ export default function ProductosCertificados() {
                 >
                     {/* Título */}
                     <h2 className="text-[30px] md:text-[40px] text-center font-bold mb-4">
-                        Productos <br /> certificados
+                        Carne <br /> certificados
                     </h2>
 
                     {/* Descripción */}
