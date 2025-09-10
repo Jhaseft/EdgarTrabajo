@@ -14,7 +14,7 @@ class PedidoController extends Controller
         $total = $request->input('total'); // Total del pedido
 
         // Creamos el mensaje que recibirá el administrador
-        $mensaje = "¡Nuevo pedido recibido!\n\n";
+        $mensaje = "¡Nuevo pedido recibido!\n\n"; 
 
         foreach ($cart as $item) {
             $nombre = $item['name'] ?? 'Producto desconocido';
