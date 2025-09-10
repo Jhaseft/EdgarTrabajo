@@ -73,9 +73,15 @@ export default function SidebarMenu({ menuOpen, onMenuClose, categorias }) {
                 {categorias.map((cat) => (
                   <a
                     key={cat.id}
-                    href={`#categoria-${cat.id}`}
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .getElementById(`categoria-${cat.id}`)
+                        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      onMenuClose();
+                    }}
                     className="py-2 px-2 text-base rounded hover:bg-gray-200 transition-colors"
-                    onClick={onMenuClose}
                   >
                     {cat.nombre}
                   </a>

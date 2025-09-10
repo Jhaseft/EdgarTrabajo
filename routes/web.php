@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\RutasController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,17 +19,21 @@ Route::get('/', [RutasController::class, 'index'])->name('home');
 Route::get('/compra', [RutasController::class, 'Catalogo'])->name('compra');
 
 
+Route::prefix('carrito')->group(function () {
+    
+    Route::post('/add', [CartController::class, 'add'])->name('carrito.add');
+    Route::patch('/update/{rowId}', [CartController::class, 'update'])->name('carrito.update');
+    Route::delete('/remove/{rowId}', [CartController::class, 'remove'])->name('carrito.remove');
+    Route::delete('/clear', [CartController::class, 'clear'])->name('carrito.clear');
+    Route::get('/', [CartController::class, 'index'])->name('carrito.index');
+});
+
+Route::post('/checkout/confirmar', [PedidoController::class, 'confirmar'])->name('checkout.confirmar');
+
+Route::get('/carrito/datos', [RutasController::class, 'carritoDatos']);
 
 
-
-
-
-// --- RUTAS DEL CARRITO ---
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::patch('/cart/update', [CartController::class, 'update'])->name('cart.update');
-Route::delete('/cart/remove/{key}', [CartController::class, 'remove'])->name('cart.remove');
-Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+Route::get('/checkout', [RutasController::class, 'checkout']);
 
 // --- CUALQUIER OTRA RUTA (404) ---
 Route::get('/{any}', function () {

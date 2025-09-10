@@ -40,3 +40,6 @@
   @apply opacity-100 translate-x-0;
   /* Se vuelve visible y se mueve a su posición original */
 }
+html {
+  scroll-behavior: smooth;
+}

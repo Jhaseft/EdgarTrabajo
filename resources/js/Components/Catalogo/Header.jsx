@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaSearch, FaShoppingBag } from "react-icons/fa";
+import { Link } from "@inertiajs/react";
 
 const menuButtonAnimations = {
   open: [
@@ -14,11 +16,14 @@ const menuButtonAnimations = {
   ],
 };
 
-export default function Header({ menuOpen, onMenuToggle }) {
+export default function Header({ menuOpen, onMenuToggle, currentCartCount }) {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+
   return (
     <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md fixed top-0 left-0 right-0 z-50">
-      
-      {/* Botón hamburguesa animado */}
+      {/* Botón de menú */}
       <button
         onClick={onMenuToggle}
         aria-label="Toggle menu"
@@ -27,27 +32,44 @@ export default function Header({ menuOpen, onMenuToggle }) {
         {menuButtonAnimations.open.map((anim, i) => (
           <motion.span
             key={i}
-            className="block w-8 h-[2px]  bg-gray-800 rounded-full origin-center md:w-10 md:h-[3px]"
+            className="block w-8 h-[2px] bg-gray-800 rounded-full origin-center md:w-10 md:h-[3px]"
             animate={menuOpen ? anim : menuButtonAnimations.closed[i]}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           />
         ))}
       </button>
 
-        
-
-      {/* Íconos lupa y bolso */}
+      {/* Área de búsqueda y carrito */}
       <div className="flex items-center gap-4 md:gap-6">
-        <button
-          className="text-xl md:text-2xl text-gray-600 hover:text-black transition-colors duration-200"
-        >
-          <FaSearch style={{ strokeWidth: 0.5 }} />
-        </button>
-        <button
-          className="text-2xl md:text-3xl  hover:text-black transition-colors duration-200"
+        {/* Botón de búsqueda */}
+        <div className="relative">
+          
+
+          {/* Input de búsqueda */}
+          {searchOpen && (
+            <input
+              type="text"
+              autoFocus
+              placeholder="Buscar..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="absolute top-full mt-2 right-0 w-48 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          )}
+        </div>
+
+        {/* Carrito */}
+        <Link
+          href={route("carrito.index")}
+          className="relative text-2xl md:text-3xl hover:text-black transition-colors duration-200"
         >
           <FaShoppingBag />
-        </button>
+          {currentCartCount > 0 && (
+            <span className="absolute -top-2 -right-2 bg-black text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              {currentCartCount}
+            </span>
+          )}
+        </Link>
       </div>
     </header>
   );

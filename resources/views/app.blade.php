@@ -8,7 +8,7 @@
 
         <!-- Título dinámico usando Inertia -->
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Favicon personalizado -->
         <link rel="icon" href="{{ asset('https://res.cloudinary.com/dnbklbswg/image/upload/v1755121029/logo_esb5wx.png') }}" type="image/png">
 
