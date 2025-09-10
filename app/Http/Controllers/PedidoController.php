@@ -28,7 +28,7 @@ class PedidoController extends Controller
 
         // Enviar correo al administrador
         Mail::raw($mensaje, function ($message) {
-            $message->to("jhasesaat@gmail.com")
+            $message->to("edgarmartinezm07@gmail.com") // Cambia esto por el correo del administrador
                     ->subject("Nuevo Pedido - Checkout");
         });
 
