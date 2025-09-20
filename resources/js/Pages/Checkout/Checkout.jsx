@@ -4,13 +4,26 @@ import axios from "axios";
 
 export default function Checkout({ cart = [], total }) {
   const [loading, setLoading] = useState(false);
+  const [comprobante, setComprobante] = useState(null);
 
   const handleConfirmar = async () => {
+    if (!comprobante) {
+      alert("⚠️ Debes subir un comprobante antes de confirmar.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("cart", JSON.stringify(cart));
+    formData.append("total", total);
+    formData.append("comprobante", comprobante);
+
     setLoading(true);
     try {
-      await axios.post("/checkout/confirmar", { cart, total });
+      await axios.post("/checkout/confirmar", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       alert("✅ Pedido confirmado. Revisa tu correo.");
-      router.visit("/compra"); // Redirigir a home o donde quieras
+      router.visit("/compra");
     } catch (error) {
       console.error(error);
       alert("❌ Hubo un error al confirmar el pedido.");
@@ -55,6 +68,29 @@ export default function Checkout({ cart = [], total }) {
             <p className="text-xl font-semibold text-black">
               Total: <span className="text-red-700">{total} Bs</span>
             </p>
+          </div>
+
+          {/* QR de pago estatico para compras */}
+          <div className="mt-6 text-center">
+            <h2 className="font-bold mb-2">Escanea el QR para realizar el pago</h2>
+            <img
+              src="/images/qr-pago.png"
+              alt="QR de pago"
+              className="mx-auto w-48 h-48 border-2 border-gray-300 rounded-lg"
+            />
+          </div>
+
+          {/* Subir comprobante */}
+          <div className="mt-6">
+            <label className="block font-semibold mb-2">
+              Sube tu comprobante de pago 📎
+            </label>
+            <input
+              type="file"
+              accept="image/*,application/pdf"
+              onChange={(e) => setComprobante(e.target.files[0])}
+              className="w-full border rounded p-2"
+            />
           </div>
 
           <button

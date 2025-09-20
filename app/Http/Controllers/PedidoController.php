@@ -4,37 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Cart; // Asegúrate de importar la clase del carrito
+use Illuminate\Support\Facades\Storage;
+use Cart;
 
 class PedidoController extends Controller
 {
     public function confirmar(Request $request)
     {
-        $cart = $request->input('cart'); // Array de productos
-        $total = $request->input('total'); // Total del pedido
+        $cart = json_decode($request->input('cart'), true); 
+        $total = $request->input('total');
+        $comprobante = $request->file('comprobante');
 
-        // Creamos el mensaje que recibirá el administrador
+        // Guardar comprobante en storage
+        $path = $comprobante->store('comprobantes', 'public');
+
+        // Mensaje del pedido
         $mensaje = "¡Nuevo pedido recibido!\n\n"; 
-
         foreach ($cart as $item) {
             $nombre = $item['name'] ?? 'Producto desconocido';
             $cantidad = $item['qty'] ?? 1;
-            $precio = $item['price'] ?? 0;
-
+            $precio = $item['price'] ?? 0; 
             $mensaje .= "- $nombre x $cantidad = $precio Bs\n";
         }
-
         $mensaje .= "\nTotal: $total Bs";
 
-        // Enviar correo al administrador
-        Mail::raw($mensaje, function ($message) {
-            $message->to("edgarmartinezm07@gmail.com") // Cambia esto por el correo del administrador
-                    ->subject("Nuevo Pedido - Checkout");
-        });
+       // Correo administrador
+Mail::send([], [], function ($message) use ($cart, $total, $path) {
+    $html = view('emails.pedido', compact('cart', 'total'))->render();
 
-        // Vaciar el carrito
+    $message->to("edgarmartinezm07@gmail.com")
+            ->subject("🛒 Nuevo Pedido Recibido")
+            ->html($html)
+            ->attach(storage_path("app/public/{$path}"));
+});
+        
+        // Vaciar carrito
         Cart::destroy();
 
-        return response()->json(['message' => 'Pedido confirmado, correo enviado y carrito vaciado.']);
+        return response()->json(['message' => 'Pedido confirmado, comprobante recibido y correos enviados.']);
     }
 }

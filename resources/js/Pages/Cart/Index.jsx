@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, usePage } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 
 export default function Carrito({ cart: initialCart }) {
   const [cart, setCart] = useState(initialCart);
