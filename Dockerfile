@@ -5,6 +5,8 @@ FROM php:8.3-cli
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
+    zip \
+    curl \
     libzip-dev \
     libonig-dev \
     libpng-dev \
@@ -12,8 +14,6 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libxml2-dev \
     libpq-dev \
-    zip \
-    curl \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql zip mbstring xml gd \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -42,9 +42,6 @@ RUN npm run build
 # Ajustar permisos de storage y bootstrap/cache
 RUN chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
-
-
-
 
 # Exponer puerto dinámico (Railway usa variable PORT)
 EXPOSE 8080
