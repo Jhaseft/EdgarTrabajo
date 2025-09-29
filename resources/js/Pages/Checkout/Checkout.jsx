@@ -74,7 +74,7 @@ export default function Checkout({ cart = [], total }) {
           <div className="mt-6 text-center">
             <h2 className="font-bold mb-2">Escanea el QR para realizar el pago</h2>
             <img
-              src="/images/qr-pago.png"
+              src="/images/QR.JPG"
               alt="QR de pago"
               className="mx-auto w-48 h-48 border-2 border-gray-300 rounded-lg"
             />
