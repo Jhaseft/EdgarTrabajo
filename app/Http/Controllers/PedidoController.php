@@ -20,15 +20,14 @@ class PedidoController extends Controller
         $path = $comprobante->store('comprobantes', 'public');
 
         try {
-            // Enviar correo
-            Mail::send([], [], function ($message) use ($cart, $total, $path) {
-                $html = view('emails.pedido', compact('cart', 'total'))->render();
+           Mail::mailer('sendgrid')->send([], [], function ($message) use ($cart, $total, $path) {
+    $html = view('emails.pedido', compact('cart', 'total'))->render();
 
-                $message->to("edgarmartinezm07@gmail.com")
-                        ->subject("🛒 Nuevo Pedido Recibido")
-                        ->html($html)
-                        ->attach(storage_path("app/public/{$path}"));
-            });
+    $message->to("edgarmartinezm07@gmail.com")
+            ->subject("🛒 Nuevo Pedido Recibido")
+            ->html($html)
+            ->attach(storage_path("app/public/{$path}"));
+});
 
             // Vaciar carrito
             Cart::destroy();

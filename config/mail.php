@@ -34,9 +34,9 @@ return [
     |            "failover", "roundrobin"
     |
     */
-
+ 
     'mailers' => [
-
+    
         'smtp' => [
             'transport' => 'smtp',
             'scheme' => env('MAIL_SCHEME'),
@@ -52,6 +52,9 @@ return [
         'ses' => [
             'transport' => 'ses',
         ],
+        'sendgrid' => [
+    'transport' => 'sendgrid',
+],
 
         'postmark' => [
             'transport' => 'postmark',
