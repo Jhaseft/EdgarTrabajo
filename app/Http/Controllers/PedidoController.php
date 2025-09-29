@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Cart;
+use Illuminate\Support\Facades\Log;
 
 class PedidoController extends Controller
 {
@@ -18,29 +19,34 @@ class PedidoController extends Controller
         // Guardar comprobante en storage
         $path = $comprobante->store('comprobantes', 'public');
 
-        // Mensaje del pedido
-        $mensaje = "¡Nuevo pedido recibido!\n\n"; 
-        foreach ($cart as $item) {
-            $nombre = $item['name'] ?? 'Producto desconocido';
-            $cantidad = $item['qty'] ?? 1;
-            $precio = $item['price'] ?? 0; 
-            $mensaje .= "- $nombre x $cantidad = $precio Bs\n";
+        try {
+            // Enviar correo
+            Mail::send([], [], function ($message) use ($cart, $total, $path) {
+                $html = view('emails.pedido', compact('cart', 'total'))->render();
+
+                $message->to("edgarmartinezm07@gmail.com")
+                        ->subject("🛒 Nuevo Pedido Recibido")
+                        ->html($html)
+                        ->attach(storage_path("app/public/{$path}"));
+            });
+
+            // Vaciar carrito
+            Cart::destroy();
+
+            return response()->json([
+                'message' => 'Pedido confirmado, comprobante recibido y correos enviados.'
+            ]);
+
+        } catch (\Exception $e) {
+            // Registrar el error en laravel.log
+            Log::error("Error al enviar correo de pedido: " . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return response()->json([
+                'message' => 'Hubo un error al enviar el correo.',
+                'error' => $e->getMessage()
+            ], 500);
         }
-        $mensaje .= "\nTotal: $total Bs";
-
-       // Correo administrador
-Mail::send([], [], function ($message) use ($cart, $total, $path) {
-    $html = view('emails.pedido', compact('cart', 'total'))->render();
-
-    $message->to("edgarmartinezm07@gmail.com")
-            ->subject("🛒 Nuevo Pedido Recibido")
-            ->html($html)
-            ->attach(storage_path("app/public/{$path}"));
-});
-        
-        // Vaciar carrito
-        Cart::destroy();
-
-        return response()->json(['message' => 'Pedido confirmado, comprobante recibido y correos enviados.']);
     }
 }
