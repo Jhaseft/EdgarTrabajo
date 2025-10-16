@@ -33,7 +33,7 @@ Route::post('/checkout/confirmar', [PedidoController::class, 'confirmar'])->name
 Route::get('/carrito/datos', [RutasController::class, 'carritoDatos']);
 
 
-Route::get('/pago', [RutasController::class, 'checkout']);
+Route::get('/checkout', [RutasController::class, 'checkout']);
 
 // --- CUALQUIER OTRA RUTA (404) ---
 Route::get('/{any}', function () {
