@@ -33,9 +33,9 @@ Route::post('/checkout/confirmar', [PedidoController::class, 'confirmar'])->name
 Route::get('/carrito/datos', [RutasController::class, 'carritoDatos']);
 
 
-Route::get('/checkout', [RutasController::class, 'checkout']);
+Route::get('/pago', [RutasController::class, 'checkout']);
 
 // --- CUALQUIER OTRA RUTA (404) ---
 Route::get('/{any}', function () {
-    return Inertia::render('NotFound'); // tu página de NotFound
+    return Inertia::render('NotFound'); 
 })->where('any', '.*');

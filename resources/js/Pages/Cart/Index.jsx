@@ -6,7 +6,7 @@ export default function Carrito({ cart: initialCart }) {
   const [cart, setCart] = useState(initialCart);
   const [loadingRow, setLoadingRow] = useState(null);
 
-  const calcularTotales = (items) =>
+  const calcularTotales = (items) => 
     items.reduce((acc, i) => acc + i.subtotal, 0);
 
   const updateCantidad = async (rowId, nuevaCantidad) => {

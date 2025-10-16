@@ -5,10 +5,10 @@ import AnimatedSection from "@/Components/Inicio/Animaciones"; // Componente par
 export default function Clientes() {
   // Lista de clientes con imagen o video, nombre de usuario y color de etiqueta
   const clientes = [
-    { tipo: "img", src: "https://th.bing.com/th/id/R.0382de737893bc434c16ac0d55326c3d?rik=VTjTHaZxyqQVPw&pid=ImgRaw&r=0", user: "@pikigamarra", color: "bg-orange-500" },
-    { tipo: "video", src: "https://res.cloudinary.com/dnbklbswg/video/upload/v1755141576/video_de_carga_ye2f1c.mp4", user: "@nicolásmonzón", color: "bg-pink-600" },
-    { tipo: "img", src: "https://tse2.mm.bing.net/th/id/OIP.pNhMU1obbxSztoAB5S71xAHaLH?w=600&h=900&rs=1&pid=ImgDetMain&o=7&rm=3", user: "@alvinich", color: "bg-orange-500" },
-    { tipo: "img", src: "https://media.licdn.com/dms/image/D4D03AQFQ3w5ncKlP6g/profile-displayphoto-shrink_800_800/0/1665612326765?e=2147483647&v=beta&t=8XrNZRWX5a48kpS5NiIlqA9gPlemEGf8frktIk5zxxs", user: "@diegolas", color: "bg-orange-500" },
+    { tipo: "img", src: "https://res.cloudinary.com/dnbklbswg/image/upload/v1760577877/corte_beniano_zsenhz_c_crop_ar_1_1_li4yht.jpg", user: "@pikigamarra", color: "bg-orange-500" },
+    { tipo: "video", src: "https://res.cloudinary.com/dnbklbswg/video/upload/v1760577042/EL_VOCALISTA_DE_CUMBIA_DE_LA_CRUZ_ELEGI%C3%93_LA_MEJOR_CARNE_Nicol%C3%A1s_Monz%C3%B3n_lo_dijo-_La_carne_edm8yf.mp4", user: "@nicolásmonzón", color: "bg-pink-600" },
+    { tipo: "img", src: "https://res.cloudinary.com/dnbklbswg/image/upload/v1760577472/corteben_q89bns.jpg", user: "@alvinich", color: "bg-orange-500" },
+    { tipo: "img", src: "https://res.cloudinary.com/dnbklbswg/image/upload/v1760578047/diegolass_inhcc9.jpg", user: "@diegolas", color: "bg-orange-500" },
   ];
 
   return (

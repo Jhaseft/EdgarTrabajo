@@ -34,7 +34,7 @@ export default function EnvioGratisHeader({ background = "#8B2B28" }) {
           - text-center → centra el texto horizontalmente.
         */
       >
-        Ya no se hacen envios Gratis y Descuentos
+         Se hacen envios Gratis y Descuentos
         {/* Este es el mensaje que verá el usuario */}
       </p>
     </div>

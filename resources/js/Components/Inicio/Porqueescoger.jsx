@@ -19,6 +19,7 @@ export default function Porqueescoger() {
             src: "https://res.cloudinary.com/dnbklbswg/image/upload/v1755141898/logo-derechas_afq059.png",
             descripcion: "Con nuestras promociones y precios sumamente competitivos, te ahorraremos mucho dinero. Tenemos la mejor relación calidad-precio del mercado."
         },
+        
     ];
 
     return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, router } from "@inertiajs/react";
 import axios from "axios";
-
+ 
 export default function Checkout({ cart = [], total }) {
   const [loading, setLoading] = useState(false);
   const [comprobante, setComprobante] = useState(null);

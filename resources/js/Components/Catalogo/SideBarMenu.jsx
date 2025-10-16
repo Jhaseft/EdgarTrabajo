@@ -96,23 +96,18 @@ export default function SidebarMenu({ menuOpen, onMenuClose, categorias }) {
           {/* Redes sociales */}
           <div className="flex flex-col gap-2 mt-auto">
             <a
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61563781653029&locale=es_LA"
               className="flex items-center gap-2 py-2 px-2 text-base rounded hover:bg-gray-200 transition-colors"
             >
               <FaFacebookF /> Facebook
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/elcortebeniano"
               className="flex items-center gap-2 py-2 px-2 text-base rounded hover:bg-gray-200 transition-colors"
             >
               <FaInstagram /> Instagram
             </a>
-            <a
-              href="#"
-              className="flex items-center gap-2 py-2 px-2 text-base rounded hover:bg-gray-200 transition-colors"
-            >
-              <FaShareAlt /> Compartir
-            </a>
+           
           </div>
         </nav>
       </motion.div>

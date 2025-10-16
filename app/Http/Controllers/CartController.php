@@ -20,7 +20,7 @@ class CartController extends Controller
 
     // Agregar producto
     public function add(Request $request)
-    {
+    { 
         Cart::add([
             'id' => $request->id,
             'name' => $request->nombre,
