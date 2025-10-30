@@ -30,25 +30,25 @@ export default function Contact() {
                     {/* Botones de redes sociales */}
                     <div className="grid grid-cols-2 gap-6 text-lg w-full max-w-md">
                         <Link
-                            href="#"
+                            href="https://wa.me/59177420111"
                             className="bg-gray-900 text-white px-6 py-4 text-center rounded hover:opacity-80 transition"
                         >
                             Whatsapp
                         </Link>
                         <Link
-                            href="#"
+                            href="https://www.instagram.com/elcortebeniano"
                             className="bg-gray-900 text-white px-6 py-4 text-center rounded hover:opacity-80 transition"
                         >
                             Instagram
                         </Link>
                         <Link
-                            href="#"
+                            href="https://www.facebook.com/profile.php?id=61563781653029&locale=es_LA"
                             className="bg-gray-900 text-white px-6 py-4 text-center rounded hover:opacity-80 transition"
                         >
                             Facebook
                         </Link>
                         <Link
-                            href="#"
+                            href="https://www.tiktok.com/@elcortebeniano"
                             className="bg-gray-900 text-white px-6 py-4 text-center rounded hover:opacity-80 transition"
                         >
                             Tik Tok

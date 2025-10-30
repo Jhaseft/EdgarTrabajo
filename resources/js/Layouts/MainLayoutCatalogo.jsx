@@ -73,7 +73,7 @@ export default function MainLayout({ children, categorias, currentCartCount }) {
         >
           {children}
         </motion.main>
-
+ 
         {/* Botón WhatsApp */}
         <a
           href="https://wa.me/59177420111"
